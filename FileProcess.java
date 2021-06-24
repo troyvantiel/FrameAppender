@@ -73,9 +73,9 @@ public class FileProcess
                             if(br.readLine() == null) //takes lines out of the file that are unwanted
                             {
                                 //System.out.println("Outputting na");
-                                csvWriter.append(rdg + splitBy + "na" + splitBy + "na" + splitBy
-                                    + "na" + splitBy + "na" + splitBy + "na" + splitBy              //outputs Na to the file to show that the volume calculated was bad and therefore the energy can be assumed to follow the trend
-                                        + "na" + splitBy + "na" + "\n");
+                                csvWriter.append(rdg + splitBy + "NA" + splitBy + "NA" + splitBy
+                                    + "NA" + splitBy + "NA" + splitBy + "NA" + splitBy              //outputs Na to the file to show that the volume calculated was bad and therefore the energy can be assumed to follow the trend
+                                        + "NA" + splitBy + "NA" + "\n");
                                 break; //breaks out of the loop to avoid null pointers
                             }  
                         }
