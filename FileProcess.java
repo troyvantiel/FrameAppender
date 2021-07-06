@@ -89,16 +89,19 @@ public class FileProcess
 	{
 		List<Float> Std = new ArrayList<Float>();
 		int StandardDeviation = 0;
+		int track =0;
 
 		for(int i = 0; i < ValArray.size(); i++)
 		{
 		    StandardDeviation = 0;
+		    track =0;
 			for(String num: ValArray.get(i))
 			{
 			    if(!num.equals("NA"))
 			    {
-			        System.out.println(num);
+			        track++;
                     StandardDeviation += Math.pow(Float.parseFloat(num) - Mean.get(i), 2);
+                    System.out.println(StandardDeviation + " at point: " + track);
                 }
 
 
