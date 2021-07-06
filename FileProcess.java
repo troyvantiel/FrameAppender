@@ -33,7 +33,9 @@ public class FileProcess
 	    for(int i =0; i < ValArray.size(); i++)
 	    {
 	        double UseMean = Mean.get(i);
+	        System.out.println("Use mean: "+ UseMean);
 	        double stndDev = STDev.get(i);
+            System.out.println("Standard Deviation: "+ stndDev);
 	        double lowEnd  = UseMean - (stndDev/2);
             for(int k = 0; k < ValArray.get(i).size(); k++)
             {
