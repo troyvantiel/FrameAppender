@@ -102,6 +102,10 @@ public class FileProcess
 
 
 			}
+			if(StandardDeviation < 0)
+			{
+			    StandardDeviation = StandardDeviation * -1;
+            }
 			Std.add((float) Math.sqrt(StandardDeviation/ValArray.get(i).size()));
 		}
 		return Std;
