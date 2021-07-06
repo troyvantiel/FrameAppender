@@ -25,6 +25,7 @@ public class FileProcess
         int upperbound = 101;
         Random rand = new Random();
         randNum = rand.nextInt(upperbound);
+        //System.out.println("Random Number: " + randNum);
         return randNum;
     }
 
@@ -41,7 +42,7 @@ public class FileProcess
             {
                     if(ValArray.get(i).get(k).equals("NA"))
                     {
-                        int newR = Random();
+                        double newR = Random();
                         newR = newR/100;
                         Double newVal = 0.0;
                         newVal = lowEnd + (stndDev * newR);
