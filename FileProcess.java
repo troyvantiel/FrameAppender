@@ -28,7 +28,7 @@ public class FileProcess
         return randNum;
     }
 
-	public static List<List<String>> AddMean(List<List<String>> ValArray, List<Double> Mean, List<Double> STDev)
+	public static List<List<String>> AddMean(List<List<String>> ValArray, List<Double> Mean, List<Float> STDev)
 	{
 	    for(int i =0; i < ValArray.size(); i++)
 	    {
@@ -85,9 +85,9 @@ public class FileProcess
         return Mean;
     }
 
-	public static List<Double> CalcSTD(List<List<String>> ValArray, List<Double> Mean)
+	public static List<Float> CalcSTD(List<List<String>> ValArray, List<Double> Mean)
 	{
-		List<Double> Std = new ArrayList<Double>();
+		List<Float> Std = new ArrayList<Float>();
 		int StandardDeviation = 0;
 
 		for(int i = 0; i < ValArray.size(); i++)
@@ -97,12 +97,12 @@ public class FileProcess
 			{
 			    if(!num.equals("NA"))
 			    {
-                    StandardDeviation += Math.pow(Double.parseDouble(num) - Mean.get(i), 2);
+                    StandardDeviation += Math.pow(Float.parseFloat(num) - Mean.get(i), 2);
                 }
 
 
 			}
-			Std.add(Math.sqrt(StandardDeviation/ValArray.get(i).size()));
+			Std.add((float) Math.sqrt(StandardDeviation/ValArray.get(i).size()));
 		}
 		return Std;
 	}
@@ -234,7 +234,7 @@ public class FileProcess
                 ValArray.add(rho);
 
                 List<Double> Means = new ArrayList<Double>();
-                List<Double> StandardDeviationArray = new ArrayList<Double>();
+                List<Float> StandardDeviationArray = new ArrayList<Float>();
                 List<List<String>> FinalData = new ArrayList<List<String>>();
 
                 Means = CalcMean(numpoints, vol, kinEnergy, potEnergy, totEnergy,elf,rho, filecount);
