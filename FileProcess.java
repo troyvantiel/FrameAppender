@@ -19,7 +19,7 @@ public class FileProcess
 
 
 
-	public static void AddMean(List<String> vol,List<String> numpoints,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho)
+	public static void AddMean(List<String> numpoints,List<String> vol,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho)
 	{
 		for(int k = 0; k < args[1]; k++)
 		{
@@ -28,7 +28,7 @@ public class FileProcess
 
 	}
 
-	public static void CalcMean(List<String> vol, numpoints, kinEnergy, potEnergy, totEnergy, elf, rho, int div)
+	public static List<String> CalcMeanSTD(List<String> numpoints, vol, kinEnergy, potEnergy, totEnergy, elf, rho, int div)
 	{
 		for(int k = 0; k < args[1]; k++)
 		{
@@ -42,18 +42,24 @@ public class FileProcess
 
 
 		}
-		volMean = volMean/div;
-		numpointsMean = numpointsMean/div;
-		kinEnergyMean = kinEnergyMean/div;
-		potEnergyMean = potEnergyMean/div;
-		totEnergyMean = totEnergyMean/div;
-
+		List<String> Mean = new ArrayList();
+		Mean.add(numpointsMean/div);
+		Mean.add(volMean/div);
+		Mean.add(kinEnergyMean/div);
+		Mean.add(potEnergyMean/div);
+		Mean.add(totEnergyMean/div);
+		Mean.add(elfMean/div);
+		Mean.add(rhoMean/div);
+		
+		for(int i = 0; i < Mean.length(); i++)
+		{
+			for(string num: )
+			{
+				int stdDev += Math.pow(Integer.parseInt(num) - )
+			}
+		}
 	}
 
-	public static void CalcStandardDev(List<String> stdArray)
-	{
-
-	}
 
 
 
@@ -179,6 +185,9 @@ public class FileProcess
                            //     + 0 + splitBy + 0 + "\n");                          //not making a file occurs when the line is tested and its too long or the cutoff is past the threshold
                     }
                 }
+                List<String> Means = new ArrayList();
+                Means = CalcMean(numpoints, vol, kinEnergy, potEnergy, totEnergy,elf,rho, filecount);
+                CalcStandardDev(Means);
                 AddMean();
                 csvWriter.flush();
                 csvWriter.close(); //closes the writer to stop IO errors
