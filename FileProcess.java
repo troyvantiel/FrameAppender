@@ -97,6 +97,7 @@ public class FileProcess
 			{
 			    if(!num.equals("NA"))
 			    {
+			        System.out.println(num);
                     StandardDeviation += Math.pow(Float.parseFloat(num) - Mean.get(i), 2);
                 }
 
