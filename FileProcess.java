@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.Random;
+
 public class FileProcess
 {
 	public static double volMean = 0;
@@ -17,47 +19,74 @@ public class FileProcess
 
 
 
+    public static double Random()
+    {
+        int randNum = 0;
+        int upperbound = 101;
+        Random rand = new Random();
 
+        return randNum;
+    }
 
-	public static void AddMean(List<String> numpoints,List<String> vol,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho)
+	public static void AddMean(List<List<String>> ValArray)
 	{
-		for(int k = 0; k < args[1]; k++)
-		{
+	    for(int i =0; i < ValArray.size(); i++)
+	    {
+            for(String num: ValArray.get(i))
+            {
+                    if(num.equals("NA"))
+                    {
 
-		}
+                    }
+            }
+
+
+        }
+
+
 
 	}
+    public static List<Double> CalcMean(List<String> numpoints, List<String> vol,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho, int div)
+    {
+        List<Double> Mean = new ArrayList();
+        for(int k = 0; k < div; k++)
+        {
+            volMean += Integer.parseInt(vol.get(k));
+            numpointsMean += Integer.parseInt(numpoints.get(k));
+            kinEnergyMean += Integer.parseInt(kinEnergy.get(k));
+            potEnergyMean += Integer.parseInt(potEnergy.get(k));
+            totEnergyMean += Integer.parseInt(totEnergy.get(k));
+            elfMean += Integer.parseInt(elf.get(k));
+            rhoMean += Integer.parseInt(rho.get(k));
 
-	public static List<String> CalcMeanSTD(List<String> numpoints, vol, kinEnergy, potEnergy, totEnergy, elf, rho, int div)
+
+        }
+        Mean.add(numpointsMean/div);
+        Mean.add(volMean/div);
+        Mean.add(kinEnergyMean/div);
+        Mean.add(potEnergyMean/div);
+        Mean.add(totEnergyMean/div);
+        Mean.add(elfMean/div);
+        Mean.add(rhoMean/div);
+
+        return Mean;
+    }
+
+	public static List<Double> CalcSTD(List<List<String>> ValArray, List<Double> Mean)
 	{
-		for(int k = 0; k < args[1]; k++)
-		{
-			volMean += vol[k];
-			numpointsMean += numpoints[k];
-			kinEnergyMean += kinEnergy[k];
-			potEnergyMean += potEnergy[k];
-			totEnergyMean += totEnergy[k];
-			elfMean += elf[k];
-			rhoMean += rho[k];
+		List<Double> Std = new ArrayList();
+		int StandardDeviation = 0;
 
-
-		}
-		List<String> Mean = new ArrayList();
-		Mean.add(numpointsMean/div);
-		Mean.add(volMean/div);
-		Mean.add(kinEnergyMean/div);
-		Mean.add(potEnergyMean/div);
-		Mean.add(totEnergyMean/div);
-		Mean.add(elfMean/div);
-		Mean.add(rhoMean/div);
-		
-		for(int i = 0; i < Mean.length(); i++)
+		for(int i = 0; i < ValArray.size(); i++)
 		{
-			for(string num: )
+			for(String num: ValArray.get(i))
 			{
-				int stdDev += Math.pow(Integer.parseInt(num) - )
+				StandardDeviation += Math.pow(Double.parseDouble(num) - Mean.get(0), 2);
+
 			}
+			Std.add(Math.sqrt(StandardDeviation/ValArray.get(i).size()));
 		}
+		return Std;
 	}
 
 
@@ -94,7 +123,8 @@ public class FileProcess
             String splitBy = ",";
             int j = 0; 
             int filecount = Integer.parseInt(args[1]); //number of frames that Hybond has outputted
-            String rdg = Integer.parseInt(args[2]/10);
+            Integer rdgInt = Integer.parseInt(args[2])/10;
+            String rdg = rdgInt.toString();
             List<String> vol = new ArrayList<String>();
             List<String> numpoints = new ArrayList<String>();
             List<String> kinEnergy = new ArrayList<String>();
@@ -185,7 +215,15 @@ public class FileProcess
                            //     + 0 + splitBy + 0 + "\n");                          //not making a file occurs when the line is tested and its too long or the cutoff is past the threshold
                     }
                 }
-                List<String> Means = new ArrayList();
+                List<List<String>> ValArray = new ArrayList();
+                ValArray.add(numpoints);
+                ValArray.add(vol);
+                ValArray.add(kinEnergy);
+                ValArray.add(potEnergy);
+                ValArray.add(totEnergy);
+                ValArray.add(elf);
+                ValArray.add(rho);
+                List<Double> Means = new ArrayList();
                 Means = CalcMean(numpoints, vol, kinEnergy, potEnergy, totEnergy,elf,rho, filecount);
                 CalcStandardDev(Means);
                 AddMean();
