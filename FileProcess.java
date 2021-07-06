@@ -90,6 +90,7 @@ public class FileProcess
 
 		for(int i = 0; i < ValArray.size(); i++)
 		{
+		    StandardDeviation = 0;
 			for(String num: ValArray.get(i))
 			{
 			    if(!num.equals("NA"))
