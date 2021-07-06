@@ -60,14 +60,16 @@ public class FileProcess
         List<Double> Mean = new ArrayList<Double>();
         for(int k = 0; k < div; k++)
         {
-            volMean += Double.parseDouble(vol.get(k));
-            numpointsMean += Double.parseDouble(numpoints.get(k));
-            kinEnergyMean += Double.parseDouble(kinEnergy.get(k));
-            potEnergyMean += Double.parseDouble(potEnergy.get(k));
-            totEnergyMean += Double.parseDouble(totEnergy.get(k));
-            elfMean += Double.parseDouble(elf.get(k));
-            rhoMean += Double.parseDouble(rho.get(k));
-
+            if(!vol.get(k).equals("NA"))
+            {
+                volMean += Double.parseDouble(vol.get(k));
+                numpointsMean += Double.parseDouble(numpoints.get(k));
+                kinEnergyMean += Double.parseDouble(kinEnergy.get(k));
+                potEnergyMean += Double.parseDouble(potEnergy.get(k));
+                totEnergyMean += Double.parseDouble(totEnergy.get(k));
+                elfMean += Double.parseDouble(elf.get(k));
+                rhoMean += Double.parseDouble(rho.get(k));
+            }
 
         }
         Mean.add(numpointsMean/div);
@@ -90,7 +92,11 @@ public class FileProcess
 		{
 			for(String num: ValArray.get(i))
 			{
-				StandardDeviation += Math.pow(Double.parseDouble(num) - Mean.get(0), 2);
+			    if(!num.equals("NA"))
+			    {
+                    StandardDeviation += Math.pow(Double.parseDouble(num) - Mean.get(0), 2);
+                }
+
 
 			}
 			Std.add(Math.sqrt(StandardDeviation/ValArray.get(i).size()));
