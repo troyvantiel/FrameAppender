@@ -60,14 +60,13 @@ public class FileProcess
         List<Double> Mean = new ArrayList<Double>();
         for(int k = 0; k < div; k++)
         {
-            double test = Integer.parseInt(vol.get(k));
-            volMean += Integer.parseInt(vol.get(k));
-            numpointsMean += Integer.parseInt(numpoints.get(k));
-            kinEnergyMean += Integer.parseInt(kinEnergy.get(k));
-            potEnergyMean += Integer.parseInt(potEnergy.get(k));
-            totEnergyMean += Integer.parseInt(totEnergy.get(k));
-            elfMean += Integer.parseInt(elf.get(k));
-            rhoMean += Integer.parseInt(rho.get(k));
+            volMean += Double.parseDouble(vol.get(k));
+            numpointsMean += Double.parseDouble(numpoints.get(k));
+            kinEnergyMean += Double.parseDouble(kinEnergy.get(k));
+            potEnergyMean += Double.parseDouble(potEnergy.get(k));
+            totEnergyMean += Double.parseDouble(totEnergy.get(k));
+            elfMean += Double.parseDouble(elf.get(k));
+            rhoMean += Double.parseDouble(rho.get(k));
 
 
         }
