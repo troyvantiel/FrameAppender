@@ -88,20 +88,17 @@ public class FileProcess
 	public static List<Float> CalcSTD(List<List<String>> ValArray, List<Double> Mean)
 	{
 		List<Float> Std = new ArrayList<Float>();
-		int StandardDeviation = 0;
-		int track =0;
+		Double StandardDeviation;
 
 		for(int i = 0; i < ValArray.size(); i++)
 		{
-		    StandardDeviation = 0;
-		    track =0;
+		    StandardDeviation = 0.0;
 			for(String num: ValArray.get(i))
 			{
 			    if(!num.equals("NA"))
 			    {
-			        track++;
                     StandardDeviation += Math.pow(Float.parseFloat(num) - Mean.get(i), 2);
-                    System.out.println(StandardDeviation + " at point: " + track);
+                    //System.out.println(StandardDeviation + " at point: " + track);
                 }
 
 
