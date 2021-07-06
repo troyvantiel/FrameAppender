@@ -19,31 +19,40 @@ public class FileProcess
 
 
 
-    public static double Random()
+    public static int Random()
     {
         int randNum = 0;
         int upperbound = 101;
         Random rand = new Random();
-
+        randNum = rand.nextInt(upperbound);
         return randNum;
     }
 
-	public static void AddMean(List<List<String>> ValArray)
+	public static List<List<String>> AddMean(List<List<String>> ValArray, List<Double> Mean, List<Double> STDev)
 	{
 	    for(int i =0; i < ValArray.size(); i++)
 	    {
-            for(String num: ValArray.get(i))
+	        double UseMean = Mean.get(i);
+	        double stndDev = STDev.get(i);
+	        double lowEnd  = UseMean - (stndDev/2);
+            for(int k = 0; k < ValArray.get(i).size(); k++)
             {
-                    if(num.equals("NA"))
+                    if(ValArray.get(i).get(k).equals("NA"))
                     {
-
+                        int newR = Random();
+                        newR = newR/100;
+                        Double newVal = 0.0;
+                        newVal = lowEnd + (stndDev * newR);
+                        String newValS = newVal.toString();
+                        ValArray.get(i).remove(k);
+                        ValArray.get(i).add(k,newValS);
                     }
             }
 
 
         }
 
-
+    return ValArray;
 
 	}
     public static List<Double> CalcMean(List<String> numpoints, List<String> vol,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho, int div)
@@ -223,10 +232,24 @@ public class FileProcess
                 ValArray.add(totEnergy);
                 ValArray.add(elf);
                 ValArray.add(rho);
+
                 List<Double> Means = new ArrayList();
+                List<Double> StandardDeviationArray = new ArrayList();
+                List<List<String>> FinalData = new ArrayList();
+
                 Means = CalcMean(numpoints, vol, kinEnergy, potEnergy, totEnergy,elf,rho, filecount);
-                CalcStandardDev(Means);
-                AddMean();
+                StandardDeviationArray = CalcSTD(ValArray, Means);
+                FinalData = AddMean(ValArray,Means,StandardDeviationArray);
+
+
+                for(int y = 0; y < FinalData.get(0).size(); y++)
+                {
+                    csvWriter.append(rdg + splitBy + FinalData.get(0).get(y) + splitBy + FinalData.get(1).get(y) + splitBy
+                    + FinalData.get(2).get(y) + splitBy + FinalData.get(3).get(y) + splitBy + FinalData.get(4).get(y) + splitBy     //writing the data line to the file
+                      + FinalData.get(5).get(y) + splitBy + FinalData.get(6).get(y) + "\n");
+                }
+
+
                 csvWriter.flush();
                 csvWriter.close(); //closes the writer to stop IO errors
             }
