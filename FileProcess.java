@@ -104,6 +104,7 @@ public class FileProcess
 			}
 			if(StandardDeviation < 0)
 			{
+			    System.out.println("Negative fixed");
 			    StandardDeviation = StandardDeviation * -1;
             }
 			Std.add((float) Math.sqrt(StandardDeviation/ValArray.get(i).size()));
