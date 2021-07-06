@@ -57,7 +57,7 @@ public class FileProcess
 	}
     public static List<Double> CalcMean(List<String> numpoints, List<String> vol,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho, int div)
     {
-        List<Double> Mean = new ArrayList();
+        List<Double> Mean = new ArrayList<Double>();
         for(int k = 0; k < div; k++)
         {
             volMean += Integer.parseInt(vol.get(k));
@@ -83,7 +83,7 @@ public class FileProcess
 
 	public static List<Double> CalcSTD(List<List<String>> ValArray, List<Double> Mean)
 	{
-		List<Double> Std = new ArrayList();
+		List<Double> Std = new ArrayList<Double>();
 		int StandardDeviation = 0;
 
 		for(int i = 0; i < ValArray.size(); i++)
@@ -97,15 +97,6 @@ public class FileProcess
 		}
 		return Std;
 	}
-
-
-
-
-
-
-
-
-
 
     //args[0] is the filename without the number in it (String)
     //args[1] is the number of files that need to be processed (int)
@@ -224,7 +215,7 @@ public class FileProcess
                            //     + 0 + splitBy + 0 + "\n");                          //not making a file occurs when the line is tested and its too long or the cutoff is past the threshold
                     }
                 }
-                List<List<String>> ValArray = new ArrayList();
+                List<List<String>> ValArray = new ArrayList<List<String>>();
                 ValArray.add(numpoints);
                 ValArray.add(vol);
                 ValArray.add(kinEnergy);
@@ -233,9 +224,9 @@ public class FileProcess
                 ValArray.add(elf);
                 ValArray.add(rho);
 
-                List<Double> Means = new ArrayList();
-                List<Double> StandardDeviationArray = new ArrayList();
-                List<List<String>> FinalData = new ArrayList();
+                List<Double> Means = new ArrayList<Double>();
+                List<Double> StandardDeviationArray = new ArrayList<Double>();
+                List<List<String>> FinalData = new ArrayList<List<String>>();
 
                 Means = CalcMean(numpoints, vol, kinEnergy, potEnergy, totEnergy,elf,rho, filecount);
                 StandardDeviationArray = CalcSTD(ValArray, Means);
