@@ -60,6 +60,7 @@ public class FileProcess
         List<Double> Mean = new ArrayList<Double>();
         for(int k = 0; k < div; k++)
         {
+            double test = Integer.parseInt(vol.get(k));
             volMean += Integer.parseInt(vol.get(k));
             numpointsMean += Integer.parseInt(numpoints.get(k));
             kinEnergyMean += Integer.parseInt(kinEnergy.get(k));
