@@ -7,6 +7,62 @@ import java.io.PrintWriter;
 import java.util.*;
 public class FileProcess
 {
+	public static double volMean = 0;
+	public static double numpointsMean = 0;
+	public static double kinEnergyMean = 0;
+	public static double potEnergyMean = 0;
+	public static double totEnergyMean = 0;
+	public static double elfMean = 0;
+	public static double rhoMean = 0;
+
+
+
+
+
+	public static void AddMean(List<String> vol,List<String> numpoints,List<String> kinEnergy,List<String> potEnergy,List<String> totEnergy,List<String> elf,List<String> rho)
+	{
+		for(int k = 0; k < args[1]; k++)
+		{
+
+		}
+
+	}
+
+	public static void CalcMean(List<String> vol, numpoints, kinEnergy, potEnergy, totEnergy, elf, rho, int div)
+	{
+		for(int k = 0; k < args[1]; k++)
+		{
+			volMean += vol[k];
+			numpointsMean += numpoints[k];
+			kinEnergyMean += kinEnergy[k];
+			potEnergyMean += potEnergy[k];
+			totEnergyMean += totEnergy[k];
+			elfMean += elf[k];
+			rhoMean += rho[k];
+
+
+		}
+		volMean = volMean/div;
+		numpointsMean = numpointsMean/div;
+		kinEnergyMean = kinEnergyMean/div;
+		potEnergyMean = potEnergyMean/div;
+		totEnergyMean = totEnergyMean/div;
+
+	}
+
+	public static void CalcStandardDev(List<String> stdArray)
+	{
+
+	}
+
+
+
+
+
+
+
+
+
     //args[0] is the filename without the number in it (String)
     //args[1] is the number of files that need to be processed (int)
     //args[2]line number that holds the value wanted (int)
@@ -32,7 +88,7 @@ public class FileProcess
             String splitBy = ",";
             int j = 0; 
             int filecount = Integer.parseInt(args[1]); //number of frames that Hybond has outputted
-            String rdg = "";
+            String rdg = Integer.parseInt(args[2]/10);
             List<String> vol = new ArrayList<String>();
             List<String> numpoints = new ArrayList<String>();
             List<String> kinEnergy = new ArrayList<String>();
@@ -73,9 +129,16 @@ public class FileProcess
                             if(br.readLine() == null) //takes lines out of the file that are unwanted
                             {
                                 //System.out.println("Outputting na");
-                                csvWriter.append(rdg + splitBy + "NA" + splitBy + "NA" + splitBy
-                                    + "NA" + splitBy + "NA" + splitBy + "NA" + splitBy              //outputs Na to the file to show that the volume calculated was bad and therefore the energy can be assumed to follow the trend
-                                        + "NA" + splitBy + "NA" + "\n");
+                            	kinEnergy.add("NA");	
+                            	numpoints.add("NA");
+                            	potEnergy.add("NA");
+                            	totEnergy.add("NA");	
+                            	vol.add("NA");
+                            	elf.add("NA");	
+                            	rho.add("NA");
+                                //csvWriter.append(rdg + splitBy + "NA" + splitBy + "NA" + splitBy
+                                    //+ "NA" + splitBy + "NA" + splitBy + "NA" + splitBy              //outputs Na to the file to show that the volume calculated was bad and therefore the energy can be assumed to follow the trend
+                                      //  + "NA" + splitBy + "NA" + "\n");
                                 break; //breaks out of the loop to avoid null pointers
                             }  
                         }
@@ -95,20 +158,28 @@ public class FileProcess
                             totEnergy.add(DataAr[5]);
                             elf.add(DataAr[6]);
                             rho.add(DataAr[7]);
-                            csvWriter.append(rdg + splitBy + numpoints.get(j) + splitBy + vol.get(j) + splitBy
-                                + kinEnergy.get(j) + splitBy + potEnergy.get(j) + splitBy + totEnergy.get(j) + splitBy     //writing the data line to the file
-                                    + elf.get(j) + splitBy + rho.get(j) + "\n");                                            //should only happen once as the last line of the file is the one wanted.
+                            //csvWriter.append(rdg + splitBy + numpoints.get(j) + splitBy + vol.get(j) + splitBy
+                                //+ kinEnergy.get(j) + splitBy + potEnergy.get(j) + splitBy + totEnergy.get(j) + splitBy     //writing the data line to the file
+                                  //  + elf.get(j) + splitBy + rho.get(j) + "\n");                                            //should only happen once as the last line of the file is the one wanted.
                             j++;                                                                                            //if a different rdg value is wanted change the cutoff value. 
                         }
                     }
                     else
                     {
+                    	kinEnergy.add("0");	
+                        numpoints.add("0");
+                        potEnergy.add("0");
+                        totEnergy.add("0");	
+                        vol.add("0");
+                        elf.add("0");	
+                        rho.add("0");
                         //System.out.println("Outputting zero");
-                        csvWriter.append(rdg + splitBy + 0 + splitBy + 0 + splitBy
-                            + 0 + splitBy + 0 + splitBy + 0 + splitBy               //this is called if Bonder did not make an output file for the interaction.
-                                + 0 + splitBy + 0 + "\n");                          //not making a file occurs when the line is tested and its too long or the cutoff is past the threshold
+                       // csvWriter.append(rdg + splitBy + 0 + splitBy + 0 + splitBy
+                         //   + 0 + splitBy + 0 + splitBy + 0 + splitBy               //this is called if Bonder did not make an output file for the interaction.
+                           //     + 0 + splitBy + 0 + "\n");                          //not making a file occurs when the line is tested and its too long or the cutoff is past the threshold
                     }
                 }
+                AddMean();
                 csvWriter.flush();
                 csvWriter.close(); //closes the writer to stop IO errors
             }
