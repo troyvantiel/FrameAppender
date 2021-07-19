@@ -22,7 +22,7 @@ public class FileProcess
     public static int Random()
     {
         int randNum = 0;
-        int upperbound = 101;
+        int upperbound = 201;
         Random rand = new Random();
         randNum = rand.nextInt(upperbound);
         //System.out.println("Random Number: " + randNum);
@@ -37,7 +37,7 @@ public class FileProcess
 	        System.out.println("Use mean: "+ UseMean);
 	        double stndDev = STDev.get(i);
             System.out.println("Standard Deviation: "+ stndDev);
-	        double lowEnd  = UseMean - (stndDev/2);
+	        double lowEnd  = UseMean - (stndDev);
             for(int k = 0; k < ValArray.get(i).size(); k++)
             {
                     if(ValArray.get(i).get(k).equals("NA"))
