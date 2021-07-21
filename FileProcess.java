@@ -54,6 +54,13 @@ public class FileProcess
                             }
 
                         }
+                        if(i == 3)
+                        {
+                            if(newVal > 0)
+                            {
+                                newVal = newVal * -1;
+                            }
+                        }
                         String newValS = newVal.toString();
                         ValArray.get(i).remove(k);
                         ValArray.get(i).add(k,newValS);
