@@ -46,6 +46,14 @@ public class FileProcess
                         newR = newR/100;
                         Double newVal = 0.0;
                         newVal = lowEnd + (stndDev * newR);
+                        if(i == 0 ||i == 1 ||i == 2||i == 5)
+                        {
+                            if(newVal < 0)
+                            {
+                                newVal = newVal * -1;
+                            }
+
+                        }
                         String newValS = newVal.toString();
                         ValArray.get(i).remove(k);
                         ValArray.get(i).add(k,newValS);
