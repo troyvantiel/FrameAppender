@@ -58,12 +58,25 @@ public class FileProcess
                         {
                             if(newVal > 0)
                             {
+                                System.out.println("New value before multiplication" + newVal);
                                 newVal = newVal * -1;
+                                System.out.println("New value after multiplication" + newVal);
                             }
                         }
-                        String newValS = newVal.toString();
-                        ValArray.get(i).remove(k);
-                        ValArray.get(i).add(k,newValS);
+                        if(i==0)
+                        {
+                            double roundNewVal = (double)newVal;
+                            int iRoundNewVal = (int)roundNewVal;
+                            String newValS = String.valueOf(iRoundNewVal);
+                            ValArray.get(i).remove(k);
+                            ValArray.get(i).add(k,newValS);
+                        }
+                        else
+                        {
+                            String newValS = newVal.toString();
+                            ValArray.get(i).remove(k);
+                            ValArray.get(i).add(k,newValS);
+                        }
                     }
             }
 
