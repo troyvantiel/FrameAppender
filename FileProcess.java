@@ -178,26 +178,6 @@ public class FileProcess
                     if(dir.exists())
                     {
                         BufferedReader br = new BufferedReader(new FileReader(file)); //creation of the buffered reader
-                        for(int k = 0; k < loops; k++) //loops to use up the lines in the file until the one that is wanted 
-                        {
-                            //System.out.println("loops: " + loops + " k: " + k);
-                            if(br.readLine() == null) //takes lines out of the file that are unwanted
-                            {
-                                //System.out.println("Outputting na");
-                            	kinEnergy.add("NA");	
-                            	numpoints.add("NA");
-                            	potEnergy.add("NA");
-                            	totEnergy.add("NA");	
-                            	vol.add("NA");
-                            	elf.add("NA");	
-                            	rho.add("NA");
-                                //csvWriter.append(rdg + splitBy + "NA" + splitBy + "NA" + splitBy
-                                    //+ "NA" + splitBy + "NA" + splitBy + "NA" + splitBy              //outputs Na to the file to show that the volume calculated was bad and therefore the energy can be assumed to follow the trend
-                                      //  + "NA" + splitBy + "NA" + "\n");
-                                break; //breaks out of the loop to avoid null pointers
-                            }  
-                        }
-
                         while((line = br.readLine()) != null) //reading the rest of the file in which there should only be one line left
                         {
          
