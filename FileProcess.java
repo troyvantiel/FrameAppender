@@ -492,7 +492,7 @@ public class FileProcess
                 ValArray5.add(elf5);
                 ValArray5.add(rho5);
 
-                List<Double> Means1 = new ArrayList<Double>();
+                /*List<Double> Means1 = new ArrayList<Double>();
                 List<Float> StandardDeviationArray1 = new ArrayList<Float>();
                 List<List<String>> FinalData1 = new ArrayList<List<String>>();
 
@@ -529,40 +529,40 @@ public class FileProcess
                 FinalData3 = AddMean(ValArray3,Means3,StandardDeviationArray3);
                 FinalData4 = AddMean(ValArray4,Means4,StandardDeviationArray4);
                 FinalData5 = AddMean(ValArray5,Means5,StandardDeviationArray5);
-
-                for(int y = 0; y < FinalData1.get(0).size(); y++)
+                */
+                for(int y = 0; y < ValArray1.get(0).size(); y++)
                 {
-                    csvWriter1.append(rdg1 + splitBy + FinalData1.get(0).get(y) + splitBy + FinalData1.get(1).get(y) + splitBy
-                    + FinalData1.get(2).get(y) + splitBy + FinalData1.get(3).get(y) + splitBy + FinalData1.get(4).get(y) + splitBy     //writing the data line to the file
-                      + FinalData1.get(5).get(y) + splitBy + FinalData1.get(6).get(y) + "\n");
+                    csvWriter1.append(rdg1 + splitBy + ValArray1.get(0).get(y) + splitBy + ValArray1.get(1).get(y) + splitBy
+                    + ValArray1.get(2).get(y) + splitBy + ValArray1.get(3).get(y) + splitBy + ValArray1.get(4).get(y) + splitBy     //writing the data line to the file
+                      + ValArray1.get(5).get(y) + splitBy + ValArray1.get(6).get(y) + "\n");
                 }
 
-                for(int y = 0; y < FinalData2.get(0).size(); y++)
+                for(int y = 0; y < ValArray2.get(0).size(); y++)
                 {
-                    csvWriter2.append(rdg2 + splitBy + FinalData2.get(0).get(y) + splitBy + FinalData2.get(1).get(y) + splitBy
-                            + FinalData2.get(2).get(y) + splitBy + FinalData2.get(3).get(y) + splitBy + FinalData2.get(4).get(y) + splitBy     //writing the data line to the file
-                            + FinalData2.get(5).get(y) + splitBy + FinalData2.get(6).get(y) + "\n");
+                    csvWriter2.append(rdg2 + splitBy + ValArray2.get(0).get(y) + splitBy + ValArray2.get(1).get(y) + splitBy
+                            + ValArray2.get(2).get(y) + splitBy + ValArray2.get(3).get(y) + splitBy + ValArray2.get(4).get(y) + splitBy     //writing the data line to the file
+                            + ValArray2.get(5).get(y) + splitBy + ValArray2.get(6).get(y) + "\n");
                 }
 
-                for(int y = 0; y < FinalData3.get(0).size(); y++)
+                for(int y = 0; y < ValArray3.get(0).size(); y++)
                 {
-                    csvWriter3.append(rdg3 + splitBy + FinalData3.get(0).get(y) + splitBy + FinalData3.get(1).get(y) + splitBy
-                            + FinalData3.get(2).get(y) + splitBy + FinalData3.get(3).get(y) + splitBy + FinalData3.get(4).get(y) + splitBy     //writing the data line to the file
-                            + FinalData3.get(5).get(y) + splitBy + FinalData3.get(6).get(y) + "\n");
+                    csvWriter3.append(rdg3 + splitBy + ValArray3.get(0).get(y) + splitBy + ValArray3.get(1).get(y) + splitBy
+                            + ValArray3.get(2).get(y) + splitBy + ValArray3.get(3).get(y) + splitBy + ValArray3.get(4).get(y) + splitBy     //writing the data line to the file
+                            + ValArray3.get(5).get(y) + splitBy + ValArray3.get(6).get(y) + "\n");
                 }
 
-                for(int y = 0; y < FinalData4.get(0).size(); y++)
+                for(int y = 0; y < ValArray4.get(0).size(); y++)
                 {
-                    csvWriter4.append(rdg4 + splitBy + FinalData4.get(0).get(y) + splitBy + FinalData4.get(1).get(y) + splitBy
-                            + FinalData4.get(2).get(y) + splitBy + FinalData4.get(3).get(y) + splitBy + FinalData4.get(4).get(y) + splitBy     //writing the data line to the file
-                            + FinalData4.get(5).get(y) + splitBy + FinalData4.get(6).get(y) + "\n");
+                    csvWriter4.append(rdg4 + splitBy + ValArray4.get(0).get(y) + splitBy + ValArray4.get(1).get(y) + splitBy
+                            + ValArray4.get(2).get(y) + splitBy + ValArray4.get(3).get(y) + splitBy + ValArray4.get(4).get(y) + splitBy     //writing the data line to the file
+                            + ValArray4.get(5).get(y) + splitBy + ValArray4.get(6).get(y) + "\n");
                 }
 
-                for(int y = 0; y < FinalData5.get(0).size(); y++)
+                for(int y = 0; y < ValArray5.get(0).size(); y++)
                 {
-                    csvWriter5.append(rdg5 + splitBy + FinalData5.get(0).get(y) + splitBy + FinalData5.get(1).get(y) + splitBy
-                            + FinalData5.get(2).get(y) + splitBy + FinalData5.get(3).get(y) + splitBy + FinalData5.get(4).get(y) + splitBy     //writing the data line to the file
-                            + FinalData5.get(5).get(y) + splitBy + FinalData5.get(6).get(y) + "\n");
+                    csvWriter5.append(rdg5 + splitBy + ValArray5.get(0).get(y) + splitBy + ValArray5.get(1).get(y) + splitBy
+                            + ValArray5.get(2).get(y) + splitBy + ValArray5.get(3).get(y) + splitBy + ValArray5.get(4).get(y) + splitBy     //writing the data line to the file
+                            + ValArray5.get(5).get(y) + splitBy + ValArray5.get(6).get(y) + "\n");
                 }
 
 
