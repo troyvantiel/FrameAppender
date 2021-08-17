@@ -45,7 +45,8 @@ public class FileProcess
                         double newR = Random();
                         newR = newR/100;
                         Double newVal = 0.0;
-                        newVal = lowEnd + (stndDev * newR);
+                        //newVal = lowEnd + (stndDev * newR);
+                        newVal = UseMean;
                         if(i == 0 ||i == 1 ||i == 2||i == 5)
                         {
                             if(newVal < 0)
